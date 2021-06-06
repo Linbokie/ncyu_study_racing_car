@@ -9,13 +9,38 @@ QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+        Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    public:
+        MainWindow(QWidget *parent = nullptr);
+        ~MainWindow();
 
-private:
-    Ui::MainWindow *ui;
+    protected:
+        void keyPressEvent(QKeyEvent *);
+
+    private slots:
+        void update_time();
+        void update_object();
+
+
+        void on_button_start_game_clicked();
+
+    private:
+        Ui::MainWindow *ui;
+
+        int time;
+        int game_status;
+        int bgm_pos;
+        int car_pos;
+        int car_direction;
+        float car_distance;
+
+        QTimer *object_timer;
+        QTimer *clock_timer;
+
+        void game_start();
+        void game_pause();
+        void game_stop();
+        void move_car();
 };
 #endif // MAINWINDOW_H
